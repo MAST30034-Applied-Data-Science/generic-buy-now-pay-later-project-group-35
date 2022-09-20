@@ -18,16 +18,20 @@ spark = (
     .getOrCreate()
 )
 
+# change to "../data/" if required
+# RELATIVE_DIR = "../data/"
+RELATIVE_DIR = "data/"
+
 # SA2 Population Dataset: Saved as 'population.xlsx' in data/tables
 POPULATION_URL = "https://www.abs.gov.au/statistics/people/population/" + \
                  "regional-population-age-and-sex/2021/32350DS0001_2021.xlsx"
-POPULATION_FILE_PATH = f"../data/tables/population.xlsx"
+POPULATION_FILE_PATH = f"{RELATIVE_DIR}tables/population.xlsx"
 urlretrieve(POPULATION_URL, POPULATION_FILE_PATH)
 
 # Postcode Dataset: Saved as 'australian_postcodes.csv' in data/tables
 POSTCODE_URL = "https://raw.githubusercontent.com/matthewproctor/" + \
                "australianpostcodes/master/australian_postcodes.csv"
-POSTCODE_FILE_PATH = "../data/tables/australian_postcodes.csv"
+POSTCODE_FILE_PATH = f"{RELATIVE_DIR}tables/australian_postcodes.csv"
 urlretrieve(POSTCODE_URL, POSTCODE_FILE_PATH)
 
 # Postcode Ratio Dataset
@@ -37,7 +41,7 @@ url = "https://www.abs.gov.au/AUSSTATS/subscriber.nsf/" + \
 "July%202011&27.06.2012&Latest"
 r = requests.get(url, stream=True)
 z = zipfile.ZipFile(io.BytesIO(r.content))
-z.extractall("../data/tables")
+z.extractall(f"{RELATIVE_DIR}tables")
 
 # SA2 Income Dataset: Saved as 'datasource-AU_Govt_ABS-UoM_AURIN_DB_3_abs_
 # personal_income_total_income_sa2_2011_2018.csv' in data/tables
@@ -50,6 +54,6 @@ url = 'https://adp.aurin.org.au/geoserver/wfs'
 adp_client = WebFeatureService(url=url,username=user_name, password=password, 
                                version='2.0.0')
 response = adp_client.getfeature(typename=INCOME_FILE_NAME, outputFormat='csv')
-out = open("../data/tables/" + INCOME_FILE_NAME + ".csv", 'wb')
+out = open(f"{RELATIVE_DIR}tables/{INCOME_FILE_NAME}.csv", 'wb')
 out.write(response.read())
 out.close()
