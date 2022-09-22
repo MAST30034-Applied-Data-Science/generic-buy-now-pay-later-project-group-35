@@ -10,10 +10,9 @@ An example 'cred.env' file is given in 'cred-example.env'. Replace text in <> wi
 4. `3-final_dataset_w_fraud.ipynb`: Joins all datasets, generating the final dataset in 'data/curated'
 
 ## Changes
-1. `download.py`: added `relative_dir` constant
-2. `1-preprocess.ipynb`: added preprocessing for postcode ratio dataset + `relative_dir` constant
-3. `2.2-analysis_postcode_sa2.ipynb`: add analysis steps for postcode ratio dataset
-4. `3a-combine_datasets.ipynb`: uses postcode ratio dataset with weighted averaging to combine all datasets
-5. `3b-combine_datasets.ipynb`: uses postcode dataset with normal averaging to combine all datasets
+1. `3a-combine_datasets.ipynb`: added visualization for variation within each postcode
+2. `3b-combine_datasets.ipynb`: added visualization for variation within each postcode
+3. `3-final_dataset_w_fraud.ipynb`: combined external data with existing data using chosen postcode data and median method 
+                                    (based on 3a and 3b)
 
-TODO: Need to choose between 3a and 3b and then copy code to `3-final_dataset_w_fraud`
+TODO: Need to make model
