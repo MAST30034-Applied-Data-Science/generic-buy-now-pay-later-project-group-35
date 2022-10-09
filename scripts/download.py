@@ -20,9 +20,15 @@ spark = (
     .getOrCreate()
 )
 
-# change to "../data/" if required
-RELATIVE_DIR = "../data/"
-#RELATIVE_DIR = "data/"
+# IF ERRORS SUCH AS 'NO SUCH FILE OR DIRECTORY' OCCUR, TRY CHANGING FOLLOWING VALUE TO TRUE
+RELATIVE_PATH_TOGGLE = False
+
+if RELATIVE_PATH_TOGGLE:
+    RELATIVE_DIR = "data/"
+    CRED_DIR = "cred.env"
+else:
+    RELATIVE_DIR = "../data/"
+    CRED_DIR = "../cred.env"
 
 # SA2 Population Dataset: Saved as 'population.xlsx' in data/tables
 POPULATION_URL = "https://www.abs.gov.au/statistics/people/population/" + \
@@ -49,7 +55,7 @@ z.extractall(f"{RELATIVE_DIR}tables")
 # personal_income_total_income_sa2_2011_2018.csv' in data/tables
 INCOME_FILE_NAME = "datasource-AU_Govt_ABS-UoM_AURIN_DB_3:abs_personal_" + \
                    "income_total_income_sa2_2011_2018"
-load_dotenv('../cred.env')
+load_dotenv(CRED_DIR)
 user_name = os.environ.get('USERNAME')
 password = os.environ.get('PASSWORD')
 url = 'https://adp.aurin.org.au/geoserver/wfs'
