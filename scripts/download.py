@@ -6,6 +6,8 @@ import os
 import requests
 import io
 import zipfile
+from owslib.util import Authentication
+import urllib3
 
 # Create a spark session
 spark = (
@@ -19,8 +21,8 @@ spark = (
 )
 
 # change to "../data/" if required
-# RELATIVE_DIR = "../data/"
-RELATIVE_DIR = "data/"
+RELATIVE_DIR = "../data/"
+#RELATIVE_DIR = "data/"
 
 # SA2 Population Dataset: Saved as 'population.xlsx' in data/tables
 POPULATION_URL = "https://www.abs.gov.au/statistics/people/population/" + \
@@ -51,8 +53,10 @@ load_dotenv('../cred.env')
 user_name = os.environ.get('USERNAME')
 password = os.environ.get('PASSWORD')
 url = 'https://adp.aurin.org.au/geoserver/wfs'
+auth = Authentication(verify=False)
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 adp_client = WebFeatureService(url=url,username=user_name, password=password, 
-                               version='2.0.0')
+                               version='2.0.0', auth=auth)
 response = adp_client.getfeature(typename=INCOME_FILE_NAME, outputFormat='csv')
 out = open(f"{RELATIVE_DIR}tables/{INCOME_FILE_NAME}.csv", 'wb')
 out.write(response.read())
