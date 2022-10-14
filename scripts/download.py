@@ -21,7 +21,7 @@ spark = (
 )
 
 # IF ERRORS SUCH AS 'NO SUCH FILE OR DIRECTORY' OCCUR, TRY CHANGING FOLLOWING VALUE TO TRUE
-RELATIVE_PATH_TOGGLE = False
+RELATIVE_PATH_TOGGLE = True
 
 if RELATIVE_PATH_TOGGLE:
     RELATIVE_DIR = "data/"
@@ -42,7 +42,7 @@ POSTCODE_URL = "https://raw.githubusercontent.com/matthewproctor/" + \
 POSTCODE_FILE_PATH = f"{RELATIVE_DIR}tables/australian_postcodes.csv"
 urlretrieve(POSTCODE_URL, POSTCODE_FILE_PATH)
 
-# Postcode Ratio Dataset
+# Postcode Ratio Dataset: Saved as '1270055006_CG_POSTCODE_2011_SA2_2011.xls'
 url = "https://www.abs.gov.au/AUSSTATS/subscriber.nsf/" + \
 "\log?openagent&1270055006_CG_POSTCODE_2011_SA2_2011.zip&" + \
 "1270.0.55.006&Data%20Cubes&70A3CE8A2E6F9A6BCA257A29001979B2&0&" + \

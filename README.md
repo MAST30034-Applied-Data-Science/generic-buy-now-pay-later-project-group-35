@@ -1,7 +1,7 @@
 ## IMPORTANT NOTES ABOUT DOWNLOAD.PY
 The script 'download.py' requires a file 'cred.env' in the root directory defining a valid ADP username and password, which can be generated [here](https://adp-access.aurin.org.au/login). 
 
-An example 'cred.env' file is given in 'cred-example.env'. Replace text in <> with the relevant information, and save as 'cred.env'
+An example 'cred.env' file is given in 'cred-example.env'. Replace text in <> with the relevant information, whilst also removing the angle brackets, and save as 'cred.env'
 
 Additionally, certain issues regarding relative directories were encountered during this project, likely due to differing setups to access the jupyter notebooks used in this repository. As such, if any 'No such file or directory' errors occur when running `download.py`, one should try changing line 24 of the download script to set `RELATIVE_PATH_TOGGLE` to True, if set to False or vice versa.
 
