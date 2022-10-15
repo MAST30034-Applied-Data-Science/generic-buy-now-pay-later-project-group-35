@@ -21,7 +21,7 @@ spark = (
 )
 
 # IF ERRORS SUCH AS 'NO SUCH FILE OR DIRECTORY' OCCUR, TRY CHANGING FOLLOWING VALUE TO TRUE
-RELATIVE_PATH_TOGGLE = False
+RELATIVE_PATH_TOGGLE = True
 
 if RELATIVE_PATH_TOGGLE:
     RELATIVE_DIR = "data/"
@@ -64,6 +64,6 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 adp_client = WebFeatureService(url=url,username=user_name, password=password, 
                                version='2.0.0', auth=auth)
 response = adp_client.getfeature(typename=INCOME_FILE_NAME, outputFormat='csv')
-out = open(f"{RELATIVE_DIR}tables/{INCOME_FILE_NAME}.csv", 'wb')
+out = open(f"{RELATIVE_DIR}tables/incomedata.csv", 'wb')
 out.write(response.read())
 out.close()
